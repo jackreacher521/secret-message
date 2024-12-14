@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flip the Boxes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdf6e4;
+            color: #444;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #ff6f61;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-gap: 20px;
+            margin-top: 20px;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #1e90ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 10px;
+            position: relative;
+            perspective: 1000px;
+        }
+        .box.flipped {
+            transform: rotateY(180deg);
+        }
+        .inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .box.flipped .inner {
+            transform: rotateY(180deg);
+        }
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+        }
+        .front {
+            background-color: #1e90ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back {
+            background-color: #ff6f61;
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            padding: 5px;
+        }
+        #message {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Flip all the boxes to reveal the secret message for you 🎵</h1>
+    <div class="grid" id="grid">
+        <!-- Each box with its respective song -->
+        <div class="box" data-url="https://youtu.be/0KozfDYK1EU">
+            <div class="inner">
+                <div class="front">🎵</div>
+                <div class="back">Dagabaaz Re</div>
+            </div>
+        </div>
+        <div class="box" data-url="https://youtu.be/KLYwt0YmQw8">
+            <div class="inner">
+                <div class="front">🎵</div>
+                <div class="back">Zehnaseeb</div>
+            </div>
+        </div>
+        <div class="box" data-url="https://youtu.be/5FU5j_DvZPg">
+            <div class="inner">
+                <div class="front">🎵</div>
+                <div class="back">Mere Humsafar</div>
+            </div>
+        </div>
+        <div class="box" data-url="https://youtu.be/c2gSzYLJ8sY">
+            <div class="inner">
+                <div class="front">🎵</div>
+                <div class="back">Ishq Bulaava</div>
+            </div>
+        </div>
+        <div class="box" data-url="https://youtu.be/B7SkAq_94J8">
+            <div class="inner">
+                <div class="front">🎵</div>
+                <div class="back">Pehla Pyaar</div>
+            </div>
+        </div>
+        <div class="box" data-url="https://youtu.be/KBIq11mNB0I">
+            <div class="inner">
+                <div class="front">🎵</div>
+                <div class="back">Malang</div>
+            </div>
+        </div>
+        <div class="box" data-url="https://youtu.be/hJBHSmyqv0Y">
+            <div class="inner">
+                <div class="front">🎵</div>
+                <div class="back">Humraah</div>
+            </div>
+        </div>
+        <div class="box" data-url="https://youtu.be/zXLgYBSdv74">
+            <div class="inner">
+                <div class="front">🎵</div>
+                <div class="back">Ik Vaari Aa</div>
+            </div>
+        </div>
+        <div class="box" data-url="https://youtu.be/K-Ts-NFR62o">
+            <div class="inner">
+                <div class="front">🎵</div>
+                <div class="back">Jab Tak</div>
+            </div>
+        </div>
+        <div class="box" data-url="https://youtu.be/NeXbmEnpSz0">
+            <div class="inner">
+                <div class="front">🎵</div>
+                <div class="back">Zara Zara</div>
+            </div>
+        </div>
+        <div class="box" data-url="https://youtu.be/VlyLyBqNvVE">
+            <div class="inner">
+                <div class="front">🎵</div>
+                <div class="back">Pehle Bhi Mai</div>
+            </div>
+        </div>
+        <div class="box" data-url="https://youtu.be/kw4tT7SCmaY">
+            <div class="inner">
+                <div class="front">🎵</div>
+                <div class="back">Animal Song</div>
+            </div>
+        </div>
+    </div>
+    <div id="message">
+        These were the songs we listened to once, with a smile on our face, and the reason is our bond and the memories we’ve created. <br>
+        <span>(aacha laga? To call kar k bol na, wait kiska kar rahi hai)</span>
+    </div>
+
+    <script>
+        const boxes = document.querySelectorAll('.box');
+        const message = document.getElementById('message');
+        let flippedCount = 0;
+
+        boxes.forEach(box => {
+            box.addEventListener('click', () => {
+                if (!box.classList.contains('flipped')) {
+                    const url = box.getAttribute('data-url');
+                    // Redirect to the song link
+                    window.open(url, '_blank');
+                    // After returning, mark the box as flipped
+                    box.classList.add('flipped');
+                    flippedCount++;
+                    
+                    // Show the message when all boxes are flipped
+                    if (flippedCount === boxes.length) {
+                        message.style.display = 'block';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
